@@ -1,0 +1,150 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font: 300 1.8rem/1.6875 'Open Sans', sans-serif;
+    font: 300 18px/1.6875 'Open Sans', sans-serif;
+    background: #222;
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol, blockquote, p {
+    margin: 0 0 20px 0;
+    margin: 0 0 2rem 0;
+}
+
+ul, ol {
+    padding-left: 40px;
+    padding-left: 4rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 36px;
+    font-size: 3.6rem;
+}
+
+h2 {
+    font-size: 32px;
+    font-size: 3.2rem;
+}
+
+h3 {
+    font-size: 26px;
+    font-size: 2.6rem;
+}
+
+h4 {
+    font-size: 24px;
+    font-size: 2.4rem;
+}
+
+.message {
+    font-size: 16px;
+    font-size: 1.6rem;
+    max-width: 350px;
+    line-height: 1.5;
+    padding: 12px 15px;
+    padding: 1.2rem 1.5rem;
+}
+
+.message-blue {
+    background: #4A89DC;
+}
+
+.message-red {
+    background: #DE2C3B;
+}
+
+.event-form, label[for="event-time"], #event-time {
+    display: none;
+}
+
+form #event-date, form #event-title, form #event-time {
+    border-radius: 0 !important;
+    padding: 10px;
+    padding: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-size: 1.4rem;
+    width: 250px;
+}
+
+.button {
+    background: #4A89DC;
+    border: 1px solid #4A89DC;
+    color: #fff;
+    border-radius: 0;
+}
+
+.button:hover, .button:visited, .button:focus {
+    background: #5f97e0;
+    border: 1px solid #5f97e0;
+    color: #fff;
+}
+
+input[type="submit"].button-primary {
+    background: #4A89DC;
+    border-color: #4A89DC;
+    border-radius: 0;
+    font-weight: normal;
+}
+
+input[type="submit"].button-primary:hover {
+    background: #5f97e0;
+    border-color: #5f97e0;
+}
+
+.container {
+    max-width: 960px;
+    padding: 20px;
+    padding: 2rem;
+}
+
+.countdowns {
+    list-style: none;
+    padding: 0;
+}
+
+.countdowns li {
+    position: relative;
+    padding: 20px;
+    padding: 2rem;
+    background: #4A89DC;
+    color: white;
+    margin-top: 45px;
+    margin-top: 4.5rem;
+}
+
+.countdowns li:hover {
+    background: #5f97e0;
+}
+
+.countdowns li .close {
+    font-size: 40px;
+    font-size: 4rem;
+    position: absolute;
+    top: -12px;
+    right: 8px;
+    cursor: pointer;
+}
+
+.countdowns li .countdown {
+    margin: 0;
+    font-size: 20px;
+    font-size: 2rem;
+}

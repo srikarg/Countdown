@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Countdown</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../css/skeleton.css">
+    <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Countdown</h1>
+
+        <p>Keep track of your most important future events with a countdown on the new tab page!</p>
+
+        <a href="#" class="button show-form">Add Event!</a>
+
+        <form class="event-form">
+            <div>
+                <label for="event-title">Event Title</label>
+                <input type="text" id="event-title" maxlength="25" required>
+
+                <label for="event-date">Event Date</label>
+                <input type="date" id="event-date" required>
+
+                <label>
+                    <input type="checkbox" id="enterTime">
+                    <span class="label-body">Do you want to enter a time as well?</span>
+                </label>
+
+                <label for="event-time">Event Time</label>
+                <input type="time" id="event-time">
+            </div>
+            <input type="submit" class="button-primary" value="Track it!">
+        </form>
+
+        <ul class="countdowns"></ul>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
