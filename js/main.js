@@ -15,33 +15,32 @@ var sortCountdowns = function() {
         if ($.isEmptyObject(data)) {
             return;
         } else {
-            console.log(data.countdowns);
-
             data.countdowns.sort(function(date1, date2) {
                 if (date1.date > date2.date) return 1;
                 if (date1.date < date2.date) return -1;
                 return 0;
             });
 
-            chrome.storage.sync.set(data, function() {
-                console.log(data.countdowns);
-                displayCountdowns();
-            });
+            chrome.storage.sync.set(data, displayCountdowns);
         }
     });
 };
 
 var displayCountdowns = function() {
     chrome.storage.sync.get('countdowns', function(data) {
+        $('.countdowns').empty();
         if ($.isEmptyObject(data)) {
             newMessage('Try adding some countdowns by clicking the button below!', 'blue');
         } else {
-            $('.countdowns').empty();
             $.each(data.countdowns, function(index, value) {
                 createCountdown(value.id, value.title, new Date(value.date));
             });
         }
     });
+};
+
+var deleteAll = function() {
+    chrome.storage.sync.remove('countdowns', displayCountdowns);
 };
 
 var deleteCountdown = function(id) {
@@ -56,7 +55,7 @@ var deleteCountdown = function(id) {
         data.countdowns.splice(index, 1);
         $('#' + id).fadeOut();
         if (data.countdowns.length === 0) {
-            chrome.storage.sync.remove('countdowns', sortCountdowns);
+            chrome.storage.sync.remove('countdowns');
             return;
         }
         chrome.storage.sync.set(data, sortCountdowns);
@@ -169,6 +168,10 @@ $(function() {
             $('.show-form').text('Add Event!');
             $('.event-form').fadeOut();
         }
+    });
+
+    $('.delete-all').on('click', function() {
+        deleteAll();
     });
 
     $('#enterTime').on('click', function() {
