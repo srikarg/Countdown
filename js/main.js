@@ -6,15 +6,37 @@ var saveCountdown = function(id, title, end) {
             return;
         }
         data.countdowns.push({ 'id': id, 'title': title, 'date': end.toJSON() });
-        chrome.storage.sync.set(data);
+        chrome.storage.sync.set(data, sortCountdowns);
     });
 };
 
-var getCountdowns = function() {
+var sortCountdowns = function() {
+    chrome.storage.sync.get('countdowns', function(data) {
+        if ($.isEmptyObject(data)) {
+            return;
+        } else {
+            console.log(data.countdowns);
+
+            data.countdowns.sort(function(date1, date2) {
+                if (date1.date > date2.date) return 1;
+                if (date1.date < date2.date) return -1;
+                return 0;
+            });
+
+            chrome.storage.sync.set(data, function() {
+                console.log(data.countdowns);
+                displayCountdowns();
+            });
+        }
+    });
+};
+
+var displayCountdowns = function() {
     chrome.storage.sync.get('countdowns', function(data) {
         if ($.isEmptyObject(data)) {
             newMessage('Try adding some countdowns by clicking the button below!', 'blue');
         } else {
+            $('.countdowns').empty();
             $.each(data.countdowns, function(index, value) {
                 createCountdown(value.id, value.title, new Date(value.date));
             });
@@ -34,10 +56,10 @@ var deleteCountdown = function(id) {
         data.countdowns.splice(index, 1);
         $('#' + id).fadeOut();
         if (data.countdowns.length === 0) {
-            chrome.storage.sync.remove('countdowns');
+            chrome.storage.sync.remove('countdowns', sortCountdowns);
             return;
         }
-        chrome.storage.sync.set(data);
+        chrome.storage.sync.set(data, sortCountdowns);
     });
 };
 
@@ -47,12 +69,16 @@ var getDateString = function(date) {
     switch(date.getDate() % 10) {
         case 1:
             suffix = 'st';
+            break;
         case 2:
             suffix = 'nd';
+            break;
         case 3:
             suffix = 'rd';
+            break;
         default:
-            suffix = 'th'
+            suffix = 'th';
+            break;
     }
     return months[date.getMonth()] + ' ' + date.getDate() + suffix + ', ' + date.getFullYear();
 };
@@ -119,7 +145,7 @@ var resetForm = function() {
 };
 
 $(function() {
-    getCountdowns();
+    sortCountdowns();
 
     var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
     var day = tomorrow.getDate();
@@ -165,13 +191,13 @@ $(function() {
                 date = new Date(date[0], date[1] - 1, date[2], time[0], time[1]);
             } else {
                 newMessage('Please enter a time! If you don\'t want a time, uncheck the time checkbox', 'red');
+                return;
             }
         } else {
             date = new Date(date[0], date[1] - 1, date[2]);
         }
         var id = '_' + Math.random().toString(36).substr(2, 9);
         saveCountdown(id, title, date);
-        createCountdown(id, title, date);
         resetForm();
     });
 
