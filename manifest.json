@@ -1,8 +1,8 @@
 {
   "name": "Countdown",
-  "version": "0.7",
-  "manifest_version": 2,
-  "description": "Keep track of your most important future events with a countdown on the new tab page!",
+  "version": "2.0",
+  "manifest_version": 3,
+  "description": "Keep track of your most important future events with a countdown on the new tab page.",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -12,10 +12,7 @@
   "incognito": "split",
   "offline_enabled": true,
   "chrome_url_overrides": {
-    "newtab": "src/override/override.html"
+    "newtab": "src/new-tab-page/index.html"
   },
-  "permissions": [
-    "notifications",
-    "storage"
-  ]
+  "permissions": ["notifications", "storage"]
 }

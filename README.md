@@ -1,6 +1,6 @@
-# Countdown
-## Created by [Srikar](http://srikarg.github.io/)
+# Countdown Chrome Extension
 
-A Chrome extension that lets you track upcoming events with countdowns.
+This Chrome extension allows you to track upcoming events with countdowns.
 
-**Link to Chrome extension:** <https://chrome.google.com/webstore/detail/countdown/liinagkdcgnopnmeodlgmccpiaalbbpa>.
+**Link to Chrome extension:**
+<https://chrome.google.com/webstore/detail/countdown/liinagkdcgnopnmeodlgmccpiaalbbpa>.
